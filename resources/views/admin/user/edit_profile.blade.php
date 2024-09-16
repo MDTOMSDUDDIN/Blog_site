@@ -71,6 +71,9 @@
         </div>
         <div class="col-lg-4">
             <div class="card">
+                @if (session('photo'))
+                    <div class="alert alert-success">{{ session('photo') }}</div>
+                @endif
                 <div class="card-header bg-primary">
                     <h2 class="text-white">Upload Image</h2>
                 </div>
@@ -84,7 +87,7 @@
                         <label for="" class="form-label">Upload Image :</label>
                         <input type="file" name="photo" class="form-control" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                         <div class="my-2">
-                            <img src="{{ asset('uploads/user') }}/{{ Auth::user()->photo }}" alt="photo" id="blah" width="100">
+                            <img src="{{ asset('uploads/user') }}/{{ Auth::user()->photo }}" id="blah" width="100">
                         </div>
                     </div>
                     <div class="mb-3">

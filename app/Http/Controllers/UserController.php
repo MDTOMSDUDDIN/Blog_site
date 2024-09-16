@@ -13,6 +13,11 @@ use Intervention\Image\Drivers\Gd\Driver;
 
 class UserController extends Controller
 {
+    function users(){
+        $users=User::all();
+        return view('admin.user.users',compact('users'));
+    }
+ //edit name,email update profile   
     function edit_profile(){
         return view('admin.user.edit_profile');
     }
@@ -40,6 +45,12 @@ class UserController extends Controller
         $request->validate([
         'photo'=>['required','mimes:jpg,png', 'max:1024'],
         ]);
+
+        if(Auth::user()->photo !=null){
+            $delete=public_path('uploads/user/'.Auth::user()->photo);
+            unlink($delete);
+        }
+
         $photo=$request->photo;
         $extension=$photo->extension();
         $file_name=uniqid().'.'.$extension;
@@ -48,5 +59,10 @@ class UserController extends Controller
         $image = $manager->read($photo);
         $image->resize(200, 200);
         $image->save(public_path('uploads/user/'.$file_name));
+
+        User::find(Auth::id())->update([
+            'photo'=>$file_name,
+        ]);
+        return back()->with('photo','photo Updated ');
     }
 }
