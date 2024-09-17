@@ -19,7 +19,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        abort('404');
+ //closed register page commited   
+ // return view('auth.register');
     }
 
     /**
