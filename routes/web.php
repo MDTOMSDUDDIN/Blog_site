@@ -4,11 +4,12 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 //Frontend 
-Route::get('/',[FrontendController::class,'welcome']);
+Route::get('/',[FrontendController::class,'index'])->name('index');
 
 Route::get('/dashboard',[HomeController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -45,3 +46,8 @@ Route::get('/category/restore/{category_id}',[CategoryController::class,'categor
 Route::get('/category/hard/delete/{category_id}',[CategoryController::class,'category_hard_delete'])->name('category.hard.delete');
 Route::post('/category/check_delete',[CategoryController::class,'category_ckeck_delete'])->name('category.check.delete');
 Route::post('/category/check_restore',[CategoryController::class,'category_ckeck_restore'])->name('category.check.restore');
+
+//Tag controller 
+Route::get('/tags',[TagController::class,'tags'])->name('tags');
+Route::post('/tag/store',[TagController::class,'tag_store'])->name('tag.store');
+Route::get('/tag/delete/{tag_id}',[TagController::class,'tag_delete'])->name('tag.delete');
