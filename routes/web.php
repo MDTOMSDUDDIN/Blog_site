@@ -1,15 +1,19 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 //Frontend 
 Route::get('/',[FrontendController::class,'index'])->name('index');
+Route::get('/author/login/page',[FrontendController::class,'author_login_page'])->name('author.login.page');
+Route::get('/author/register/page',[FrontendController::class,'author_register_page'])->name('author.register.page');
 
 Route::get('/dashboard',[HomeController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -23,31 +27,41 @@ Route::middleware('auth')->group(function () {
 });
 
 //Profile 
-Route::post('/add/user',[UserController::class,'add_user'])->name('add.user');
+Route::post('/add/user',[UserController::class,'add_user'])->middleware('auth')->name('add.user');
 Route::get('/users',[UserController::class,'users'])->name('users');
-Route::get('/edit/profile',[UserController::class,'edit_profile'])->name('edit.profile');
+Route::get('/edit/profile',[UserController::class,'edit_profile'])->middleware('auth')->name('edit.profile');
 Route::post('/update/profile',[UserController::class,'update_profile'])->name('update.profile');
 Route::post('/update/password',[UserController::class,'update_password'])->name('update.password');
 Route::post('/update/photo',[UserController::class,'update_photo'])->name('update.photo');
-Route::get('/user/delete/{user_id}',[UserController::class,'user_delete'])->name('user.delete');
+Route::get('/user/delete/{user_id}',[UserController::class,'user_delete'])->middleware('auth')->name('user.delete');
  
 
 
 //category 
-Route::get('/category',[CategoryController::class,'category'])->name('category');
+Route::get('/category',[CategoryController::class,'category'])->middleware('auth')->name('category');
 Route::post('/category/store',[CategoryController::class,'category_store'])->name('category.store');
-Route::get('/category/edit/{category_id}',[CategoryController::class,'category_edit'])->name('category.edit');
+Route::get('/category/edit/{category_id}',[CategoryController::class,'category_edit'])->middleware('auth')->name('category.edit');
 Route::post('/category/update/{category_id}',[CategoryController::class,'category_update'])->name('category.update');
 Route::get('/category/delete/{category_id}',[CategoryController::class,'category_delete'])->name('category.delete');
 
 //tash delete 
-Route::get('/trash',[CategoryController::class,'trash'])->name('trash');
+Route::get('/trash',[CategoryController::class,'trash'])->middleware('auth')->name('trash');
 Route::get('/category/restore/{category_id}',[CategoryController::class,'category_restore'])->name('category.restore');
 Route::get('/category/hard/delete/{category_id}',[CategoryController::class,'category_hard_delete'])->name('category.hard.delete');
 Route::post('/category/check_delete',[CategoryController::class,'category_ckeck_delete'])->name('category.check.delete');
 Route::post('/category/check_restore',[CategoryController::class,'category_ckeck_restore'])->name('category.check.restore');
 
 //Tag controller 
-Route::get('/tags',[TagController::class,'tags'])->name('tags');
+Route::get('/tags',[TagController::class,'tags'])->middleware('auth')->name('tags');
 Route::post('/tag/store',[TagController::class,'tag_store'])->name('tag.store');
-Route::get('/tag/delete/{tag_id}',[TagController::class,'tag_delete'])->name('tag.delete');
+Route::get('/tag/delete/{tag_id}',[TagController::class,'tag_delete'])->middleware('auth')->name('tag.delete');
+
+//author controller 
+route::post('/author/register/post',[AuthorController::class,'author_register'])->name('author.register');
+route::post('/author/login/post',[AuthorController::class,'author_login'])->name('author.login');
+route::get('/author/logout',[AuthorController::class,'author_logout'])->name('author.logout');
+route::get('/author/dashboard',[AuthorController::class,'author_dashboard'])->middleware('author')->name('author.dashboard');
+Route::get('/authors',[UserController::class,'authors'])->name('authors');
+Route::get('/authors/status/{author_id}',[UserController::class,'authors_status'])->name('authors.status');
+
+

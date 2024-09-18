@@ -10,8 +10,13 @@ class FrontendController extends Controller
     function index(){
     $categories=Category::all();
    return view('frontend.index', [
-
     'categories'=>$categories,
    ]);
+ }
+    function author_login_page(){
+        return view('frontend.author.login');
+    }
+    function author_register_page(){
+        return view('frontend.author.register');
     }
 }

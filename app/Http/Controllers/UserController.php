@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PasswordRequest;
+use App\Models\Author;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -88,5 +89,26 @@ class UserController extends Controller
             'photo'=>$file_name,
         ]);
         return back()->with('photo','photo Updated ');
+    }
+
+    function authors(){
+        $authors=Author::all();
+        return view('admin.user.authors',[
+            'authors'=>$authors,
+        ]);
+    }
+    function authors_status($author_id){
+        $author=Author::find($author_id);
+        if($author->status ==0){
+            Author::find($author_id)->update([
+                'status'=>1,
+            ]);
+            return back();
+        }else{
+            Author::find($author_id)->update([
+                'status'=>0,
+            ]);
+            return back();
+        }
     }
 }
