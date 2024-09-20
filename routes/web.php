@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
@@ -63,5 +64,13 @@ route::get('/author/logout',[AuthorController::class,'author_logout'])->name('au
 route::get('/author/dashboard',[AuthorController::class,'author_dashboard'])->middleware('author')->name('author.dashboard');
 Route::get('/authors',[UserController::class,'authors'])->name('authors');
 Route::get('/authors/status/{author_id}',[UserController::class,'authors_status'])->name('authors.status');
+Route::get('/authors/delete/{author_id}',[UserController::class,'authors_delete'])->name('authors.delete');
+
+route::get('/author/edit',[AuthorController::class,'author_edit'])->name('author.edit');
+route::post('/author/profile/update',[AuthorController::class,'author_profile_update'])->name('author.profile.update');
+route::post('/author/pass/update',[AuthorController::class,'author_pass_update'])->name('author.pass.update');
 
 
+//Post controller
+route::get('/add/post',[PostController::class,'add_post'])->name('add.post');
+route::post('/post/store',[PostController::class,'post_store'])->name('post.store');

@@ -6,8 +6,12 @@ use App\Models\Author;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
 
 
 
@@ -58,5 +62,47 @@ class AuthorController extends Controller
       function author_dashboard(){
         return view('frontend.author.admin');
       }
+      function author_edit(){
+        return view('frontend.author.edit');
+      }
+      function author_profile_update(Request $request){
+        if($request->photo ==''){
+          Author::find(Auth::guard('author')->id())->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+          ]);
+          return back();
 
+        }else{
+          if(Auth::guard('author')->user()->photo !=null){
+            $delete=public_path('uploads/author/'.Auth::guard('author')->user()->photo);
+            unlink($delete);
+        }
+
+        $photo=$request->photo;
+        $extension=$photo->extension();
+        $file_name=uniqid().'.'.$extension;
+
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($photo);
+        $image->resize(200, 200);
+        $image->save(public_path('uploads/author/'.$file_name));
+        Author::find(Auth::guard('author')->id())->update([
+          'name'=>$request->name,
+          'email'=>$request->email,
+          'photo'=>$file_name,
+        ]);
+        return back()->with('update','Profile Update Successfull !');
+        }
+      }
+      function author_pass_update(Request $request){
+        if(Hash::check($request->current_password,Auth::guard('author')->user()->password)){
+           Author::find(Auth::guard('author')->id())->update([
+               'password'=>bcrypt($request->password),
+           ]);
+           return back()->with('update','Password Change Successfully !');
+        }else{
+          return back()->with('wrong','YOur Current Password Does not Match ????');
+        }
+      }
 }

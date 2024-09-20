@@ -31,7 +31,7 @@
                             <td><strong>{{ $author->status==1?'Active':'Deactive' }}</strong></td>
                             <td>
                                 <a href="{{ route('authors.status',$author->id) }}" class="btn btn-{{ $author->status==1?'success':'primary' }}">Change_status</a>
-                                <a  class="btn btn-danger">Delete</a>
+                                <a href="{{ route('authors.delete',$author->id) }}"  class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     @endforeach
