@@ -74,3 +74,6 @@ route::post('/author/pass/update',[AuthorController::class,'author_pass_update']
 //Post controller
 route::get('/add/post',[PostController::class,'add_post'])->name('add.post');
 route::post('/post/store',[PostController::class,'post_store'])->name('post.store');
+route::get('/my/post',[PostController::class,'my_post'])->name('my.post');
+route::get('/my/post/status/{post_id}',[PostController::class,'my_post_status'])->name('my.post.status');
+route::get('/my/post/delete/{post_id}',[PostController::class,'my_post_delete'])->name('my.post.delete');

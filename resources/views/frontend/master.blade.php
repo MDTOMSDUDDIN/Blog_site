@@ -11,7 +11,7 @@
     <!-- favicon -->
     <link rel="icon" sizes="16x16" href="{{ asset('frontend_asset') }}/img/favicon.png">
 
-    <!-- Title -->Stay Connected
+    <!-- Title -->Blog Website Connected
     <title>  Personal Blog Website  </title>
 
     <!-- CSS Plugins -->

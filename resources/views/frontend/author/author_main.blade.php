@@ -62,7 +62,7 @@
                   <a href="{{ route('add.post') }}" class="nav-link">Add New Post</a>
                 </li>
                 <li class="nav-item">
-                  <a href="../../pages/email/read.html" class="nav-link">Read</a>
+                  <a href="{{ route('my.post') }}" class="nav-link">My Post</a>
                 </li>
                 <li class="nav-item">
                   <a href="../../pages/email/compose.html" class="nav-link">Compose</a>
@@ -109,16 +109,24 @@
 					<ul class="navbar-nav">
 						<li class="nav-item dropdown nav-profile">
 							<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<img src="https://via.placeholder.com/30x30" alt="profile">
+								@if (Auth('author')->user()->photo==null)
+									<img src="https://via.placeholder.com/30x30" alt="profile">
+								@else
+									<img src="{{ asset('uploads/author') }}/{{ Auth('author')->user()->photo }}" alt="">
+								@endif
 							</a>
 							<div class="dropdown-menu" aria-labelledby="profileDropdown">
 								<div class="dropdown-header d-flex flex-column align-items-center">
 									<div class="figure mb-3">
-										<img src="https://via.placeholder.com/80x80" alt="">
+									 @if (Auth('author')->user()->photo==null)
+									   <img src="https://via.placeholder.com/30x30" alt="profile">
+									 @else
+									   <img src="{{ asset('uploads/author') }}/{{ Auth('author')->user()->photo }}" alt="">
+									 @endif
 									</div>
 									<div class="info text-center">
-										<p class="name font-weight-bold mb-0">Amiah Burton</p>
-										<p class="email text-muted mb-3">amiahburton@gmail.com</p>
+										<p class="name font-weight-bold mb-0">{{ Auth('author')->user()->name }}</p>
+										<p class="email text-muted mb-3">{{ Auth('author')->user()->email }}</p>
 									</div>
 								</div>
 								<div class="dropdown-body">

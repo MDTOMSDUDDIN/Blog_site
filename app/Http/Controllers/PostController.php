@@ -1,17 +1,15 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Carbon\Carbon;
-use Illuminate\Container\Attributes\Auth;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+
 
 class PostController extends Controller
 {
@@ -59,4 +57,39 @@ class PostController extends Controller
 
     return back()->with('post', 'New Post Add Successfull !!!!');
 }
+//post section show 
+     function my_post(){
+        $posts=Post::where('author_id',auth::guard('author')->id())->simplePaginate(3);
+        return view('frontend.author.my_post',[
+            'posts'=>$posts,
+        ]);
+     }
+
+     function my_post_status($post_id){
+       $post=Post::find($post_id);
+       if($post->status==1){
+        $post=Post::find($post_id)->update([
+            'status'=>0,
+        ]);
+        return back()->with('status','Post Status Deactive Successfull !');
+       }else{
+        $post=Post::find($post_id)->update([
+         'status'=>1,
+        ]);
+        return back()->with('status','Post Status Active Successfull !');
+       }
+     }
+     function my_post_delete($post_id){
+        $post=Post::find($post_id);
+        //preview
+        $delete_preview=public_path('uploads/post/preview/'.$post->preview);
+        unlink($delete_preview);
+
+        //thumbnail
+        $delete_thumbnail=public_path('uploads/post/thumbnail/'.$post->thumbnail);
+        unlink($delete_thumbnail);
+
+        Post::find($post_id)->delete();
+        return back()->with('past_del','post Delete Successfull');
+     }
 }
