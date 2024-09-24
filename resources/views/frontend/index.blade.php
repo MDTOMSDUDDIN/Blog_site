@@ -7,72 +7,27 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="owl-carousel">
-                    <!--post1-->
-                    <div class="blog-item" style="background-image: url('{{ asset('frontend_asset') }}/img/blog/bg1.jpg')">
+                  @foreach ($sliders as $slider)
+                    <div class="blog-item" style="background-image: url('{{ asset('uploads/post/preview') }}/{{ $slider->preview }}')">
                         <div class="blog-banner">
                             <div class="post-overly">
                                 <div class="post-overly-content">
                                     <div class="entry-cat">
-                                        <a href="blog-layout-1.html" class="category-style-2">Branding</a>
+                                        <a href="{{ route('category.post', $slider->category_id) }}" class="category-style-2">{{ $slider->rel_to_category->category_name }}</a>
                                     </div>
                                     <h2 class="entry-title">
-                                        <a href="post-single.html">Architecture is a visual art and the buildings
-                                            speak for them selves </a>
+                                        <a href="{{ route('post.details', $slider->slug) }}">{{ $slider->title }}</a>
                                     </h2>
                                     <ul class="entry-meta">
-                                        <li class="post-author"> <a href="author.html">Meriam Smith</a></li>
-                                        <li class="post-date"> <span class="line"></span> Fabuary 10 ,2022</li>
-                                        <li class="post-timeread"> <span class="line"></span> 15 mins read</li>
+                                        <li class="post-author"> <a href="author.html">{{ $slider->rel_to_author->name }}</a></li>
+                                        <li class="post-date"> <span class="line"></span>{{ $slider->created_at->diffForHumans() }}</li>
+                                        <li class="post-timeread"> <span class="line"></span> {{ $slider->read_time }}</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!--post2-->
-                    <div class="blog-item" style="background-image: url('{{ asset('frontend_asset') }}/img/blog/bg2.jpg')">
-                        <div class="blog-banner">
-                            <div class="post-overly">
-                                <div class="post-overly-content">
-                                    <div class="entry-cat">
-                                        <a href="blog-layout-1.html" class="category-style-2">Livestyle</a>
-                                    </div>
-                                    <h2 class="entry-title">
-                                        <a href="post-single.html">Styles come and go. Good design is a language,
-                                            not a style. </a>
-                                    </h2>
-                                    <ul class="entry-meta">
-                                        <li class="post-author"> <a href="author.html">Meriam Smith</a></li>
-                                        <li class="post-date"> <span class="line"></span> Fabuary 10 ,2022</li>
-                                        <li class="post-timeread"> <span class="line"></span> 15 mins read</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--post3-->
-                    <div class="blog-item" style="background-image: url('{{ asset('frontend_asset') }}/img/blog/bg3.jpg')">
-                        <div class="blog-banner">
-                            <div class="post-overly">
-                                <div class="post-overly-content">
-                                    <div class="entry-cat">
-                                        <a href="blog-layout-1.html" class="category-style-2">branding</a>
-                                    </div>
-                                    <h2 class="entry-title">
-                                        <a href="post-single.html">Ignoring online marketing is like opening a
-                                            business but not telling anyone </a>
-                                    </h2>
-                                    <ul class="entry-meta">
-                                        <li class="post-author"> <a href="author.html">Meriam Smith</a></li>
-                                        <li class="post-date"> <span class="line"></span> Fabuary 10 ,2022</li>
-                                        <li class="post-timeread"> <span class="line"></span> 15 mins read</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/-->
+                  @endforeach
                 </div>
             </div>
         </div>
@@ -115,31 +70,31 @@
                     <!--post1-->
                     <div class="post-list post-list-style4">
                         <div class="post-list-image">
-                            <a href="post-single.html">
+                            <a href="{{ route('post.details',$post->slug) }}">
                                 <img src="{{ asset('uploads/post/thumbnail') }}/{{ $post->thumbnail }}" alt="">
                             </a>
                         </div>
                         <div class="post-list-content">
                             <ul class="entry-meta">
                                 <li class="entry-cat">
-                                    <a href="blog-layout-1.html" class="category-style-1">{{ $post->rel_to_category->category_name }}</a>
+                                    <a href="{{ route('category.post', $post->category_id) }}" class="category-style-1">{{ $post->rel_to_category->category_name }}</a>
                                 </li>
                                 <li class="post-date"> <span class="line"></span>{{ $post->created_at->diffForHumans() }}</li>
                             </ul>
                             <h5 class="entry-title">
-                                <a href="post-single.html">{{ $post->title }}</a>
+                                <a href="{{ route('post.details',$post->slug) }}">{{ $post->title }}</a>
                             </h5>
 
                             <div class="post-btn">
-                                <a href="post-single.html" class="btn-read-more">Continue Reading <i
+                                <a href="{{ route('post.details',$post->slug) }}" class="btn-read-more">Continue Reading <i
                                         class="las la-long-arrow-alt-right"></i></a>
                             </div>
                         </div>
                     </div>           
                     @endforeach
                     <!--pagination-->
-                    <div class="pagination">
-                        <div class="pagination-area">
+                    {{-- <div class="pagination">
+                           <div class="pagination-area">
                             <div class="pagination-list">
                                 <ul class="list-inline">
                                     <li><a href="#"><i class="las la-arrow-left"></i></a></li>
@@ -151,7 +106,8 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
+                    {{ $posts->links('vendor.pagination.custom') }}
                 </div>
             </div>
 

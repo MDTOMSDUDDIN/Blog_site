@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Str;
 
 
 class PostController extends Controller
@@ -22,7 +23,7 @@ class PostController extends Controller
         ]);
     }
 
-    function post_store(Request $request){
+    function post_store(Request $request){ 
 //preview 
      $preview = $request->preview;
      $extension = $preview->extension();
@@ -30,7 +31,7 @@ class PostController extends Controller
  
      $manager = new ImageManager(new Driver());
      $image = $manager->read($preview);
-     $image->resize(300, 300);
+     $image->resize(1000, 600);
      $image->save(public_path('uploads/post/preview/' . $preview_name));
  
 //preview 
@@ -48,6 +49,7 @@ class PostController extends Controller
         'category_id' => $request->category_id,
         'read_time' => $request->read_time,
         'title' => $request->title,
+        'slug' =>Str::lower(str_replace(' ','-',$request->title)).'-'.random_int(100000 , 200000),
         'desp' => $request->desp ?? 'No description provided',  // Fallback if description is null
         'tags' => implode(',', $request->tag_id ?? []),
         'preview' => $preview_name,

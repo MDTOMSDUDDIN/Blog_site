@@ -39,7 +39,7 @@
                 <div class="logo">
                     <a href="index.html">
                         <img src="{{ asset('frontend_asset') }}/img/logo/logo-dark.png" alt="" class="logo-dark">
-                        <img src="{{ asset('frontend_asset') }}/img/logo/logo-white.png" alt="" class="logo-white">
+                        <img src="{{ asset('frontend_asset') }}/img/logo/logo-white.png" alt="" style="border-radius: 13px" class="logo-white">
                     </a>
                 </div>
                 <div class="header-navbar">
