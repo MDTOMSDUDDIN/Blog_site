@@ -30,9 +30,9 @@ class FrontendController extends Controller
     }
     
     function post_details($slug){
-        $posts=Post::where('slug' , $slug)->first();
+        $post=Post::where('slug' , $slug)->first();
         return view('frontend.post_details',[
-            'posts'=>$posts,
+            'post'=>$post,
         ]);
     }
 
