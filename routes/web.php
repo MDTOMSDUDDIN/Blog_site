@@ -80,3 +80,4 @@ route::get('/my/post/delete/{post_id}',[PostController::class,'my_post_delete'])
 route::get('/post/details/{slug}',[FrontendController::class,'post_details'])->name('post.details');
 route::get('/author/post/{author_id}',[FrontendController::class,'author_post'])->name('author.post');
 route::get('/category/post/{category_id}',[FrontendController::class,'category_post'])->name('category.post');
+

@@ -44,7 +44,10 @@
                                  <img src="{{ asset('frontend_asset') }}/img/author/1.jpg" alt="">
                                 @endif
                                </li>
-                             <li class="post-author"> <a href="{{ route('author.post', $author_id) }}">{{ $post->rel_to_category->category_name }}</a></li>
+                               {{-- <li class="post-author"><a href="{{ route('author.post',$author->id) }}">{{ $post->rel_to_category->category_name }}</a> </li> --}}
+
+                               <li class="post-author"><a href="{{ route('author.post',$post->author_id) }}">{{ $post->rel_to_category->category_name }}</a> </li>
+
                              <li class="entry-cat"> <a href="blog-layout-1.html" class="category-style-1 "> <span class="line"></span> interior</a></li>
                              <li class="post-date"> <span class="line"></span>{{ $post->created_at->diffForHumans()}}</li>
                          </ul>
