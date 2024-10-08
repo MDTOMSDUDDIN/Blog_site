@@ -11,6 +11,8 @@ use App\Http\Controllers\UserController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
+use function Laravel\Prompts\search;
+
 //Frontend 
 Route::get('/',[FrontendController::class,'index'])->name('index');
 Route::get('/author/login/page',[FrontendController::class,'author_login_page'])->name('author.login.page');
@@ -80,4 +82,8 @@ route::get('/my/post/delete/{post_id}',[PostController::class,'my_post_delete'])
 route::get('/post/details/{slug}',[FrontendController::class,'post_details'])->name('post.details');
 route::get('/author/post/{author_id}',[FrontendController::class,'author_post'])->name('author.post');
 route::get('/category/post/{category_id}',[FrontendController::class,'category_post'])->name('category.post');
+
+
+//search
+route::get('/search',[FrontendController::class,'search'])->name('search');
 

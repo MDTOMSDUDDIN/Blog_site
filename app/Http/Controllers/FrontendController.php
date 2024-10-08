@@ -52,4 +52,8 @@ class FrontendController extends Controller
             'posts'=>$posts,
         ]);
     }
+        function search(){
+            return view('frontend.search');
+        }
+
 }
