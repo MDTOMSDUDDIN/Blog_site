@@ -86,4 +86,3 @@ route::get('/category/post/{category_id}',[FrontendController::class,'category_p
 
 //search
 route::get('/search',[FrontendController::class,'search'])->name('search');
-

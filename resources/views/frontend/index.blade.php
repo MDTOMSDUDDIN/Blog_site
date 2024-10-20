@@ -121,9 +121,9 @@
                                 <h5>Search</h5>
                             </div>
                             <div class=" widget-search">
-                                <form action="https://oredoo.assiagroupe.net/Oredoo/search.html">
+                                <form>
                                     <input type="search" id="gsearch" name="gsearch" placeholder="Search ....">
-                                    <a href="search.html" class="btn-submit"><i class="las la-search"></i></a>
+                                    <a  class="btn-submit"><i class="las la-search"></i></a>
                                 </form>
                             </div>
                         </div>
@@ -274,4 +274,13 @@
         </div>
     </div>
 </section>
+@endsection
+@section('footer_script')
+<script>
+     $('.btn-submit').click(function(){
+           let search_keyword=$('#gsearch').val();
+           let link="{{ route('search')}}"+"?q="+search_keyword;
+           window.location.href=link;
+        });
+</script>
 @endsection

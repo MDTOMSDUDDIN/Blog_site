@@ -198,7 +198,7 @@
                         <button type="button" class="close">
                             <i class="far fa-times"></i>
                         </button>
-                        <div class="search-form" >
+                        <div class="search-form">
                             <input type="search" id="search_input" placeholder="What are you looking for?">
                             <button type="submit" class="search-btn"> search</button>
                         </div>
@@ -229,10 +229,10 @@
     <script>
         $('.search-btn').click(function(){
            let search_keyword=$('#search_input').val();
-           let link="{{ route('search') }}";
+           let link="{{ route('search')}}"+"?q="+search_keyword;
            window.location.href=link;
-        })
+        });
     </script>
-
+    @yield('footer_script')
 </body>
 </html>

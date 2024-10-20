@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 @section('content')
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-11">
         <div class="card">
             <div class="card-header bg-primary">
                 <h2 class="text-white">Authors List </h2>
             </div>
             <div class="card-boby">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-responsive">
                     <tr>
                         <th>SL</th>
                         <th>Name</th>
