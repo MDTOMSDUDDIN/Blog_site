@@ -107,7 +107,7 @@
                             </div>
                         </div>
                     </div> --}}
-                    {{ $posts->links('vendor.pagination.custom') }}
+                    {{ $posts->links() }}
                 </div>
             </div>
 
@@ -136,74 +136,24 @@
 
                             <ul class="widget-popular-posts">
                                 <!--post1-->
-                                <li class="small-post">
-                                    <div class="small-post-image">
-                                        <a href="post-single.html">
-                                            <img src="{{ asset('frontend_asset') }}/img/blog/1.jpg" alt="">
-                                            <small class="nb">1</small>
-                                        </a>
-                                    </div>
-                                    <div class="small-post-content">
-                                        <p>
-                                            <a href="post-single.html">Everything is designed. Few things are
-                                                designed well.</a>
-                                        </p>
-                                        <small> <span class="slash"></span>3 mounth ago</small>
-                                    </div>
-                                </li>
+                            @foreach ($View_Posts as $View_Post)
+                            <li class="small-post">
+                                <div class="small-post-image">
+                                    <a href="post-single.html">
+                                        <img src="{{ asset('uploads/post/thumbnail') }}/{{ $View_Post->rel_to_post->thumbnail }}" alt="">
+                                        <small class="nb">{{ $View_Post->total_read }}</small>
+                                    </a>
+                                </div>
+                                <div class="small-post-content">
+                                    <p>
+                                        <a href="post-single.html">{{ $View_Post->rel_to_post->title }}</a>
+                                    </p>
+                                    <small> <span class="slash"></span>{{ $View_Post->rel_to_post->created_at->diffForHumans() }}</small>
+                                </div>
+                            </li>
 
-                                <!--post2-->
-                                <li class="small-post">
-                                    <div class="small-post-image">
-                                        <a href="post-single.html">
-                                            <img src="{{ asset('frontend_asset') }}/img/blog/5.jpg" alt="">
-                                            <small class="nb">2</small>
-                                        </a>
-                                    </div>
-                                    <div class="small-post-content">
-                                        <p>
-                                            <a href="post-single.html">Brand yourself for the career you want, not
-                                                the job you </a>
-                                        </p>
-                                        <small> <span class="slash"></span> 3 mounth ago</small>
-                                    </div>
-                                </li>
-
-                                <!--post3-->
-                                <li class="small-post">
-                                    <div class="small-post-image">
-                                        <a href="post-single.html">
-                                            <img src="{{ asset('frontend_asset') }}/img/blog/13.jpg" alt="">
-                                            <small class="nb">3</small>
-
-                                        </a>
-                                    </div>
-                                    <div class="small-post-content">
-                                        <p>
-                                            <a href="post-single.html">It’s easier to ask forgiveness than it is to
-                                                get permission.</a>
-                                        </p>
-                                        <small> <span class="slash"></span>3 mounth ago</small>
-                                    </div>
-                                </li>
-
-                                <!--post4-->
-                                <li class="small-post">
-                                    <div class="small-post-image">
-                                        <a href="post-single.html">
-                                            <img src="{{ asset('frontend_asset') }}/img/blog/16.jpg" alt="">
-                                            <small class="nb">4</small>
-                                        </a>
-                                    </div>
-                                    <div class="small-post-content">
-                                        <p>
-                                            <a href="post-single.html">All happiness depends on a leisurely
-                                                breakfast</a>
-                                        </p>
-                                        <small> <span class="slash"></span>
-                                            3 mounth ago</small>
-                                    </div>
-                                </li>
+                            @endforeach
+                               
                             </ul>
                         </div>
 

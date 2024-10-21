@@ -51,7 +51,7 @@
         <h1>NO Search Results Found </h1>
         @endforelse
             <!--pagination-->
-            <div class="pagination">     
+            {{-- <div class="pagination">     
                 <div class="pagination-area">
                     <div class="row"> 
                         <div class="col-lg-12">
@@ -68,8 +68,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!--/-->
+            {{ $search_posts->links() }}
             </div>
         </div>
 
