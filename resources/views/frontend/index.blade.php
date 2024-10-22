@@ -212,7 +212,7 @@
                             <div class="widget-tags">
                                 <ul class="list-inline">
                                 @foreach ($tags as $tag)
-                                <a href="#" class="badge badge-light text-success m-1 p-1">{{ $tag->tag_name }}</a>
+                                <a href="{{ route('tag.post',$tag->id) }}" class="badge badge-light text-success m-1 p-1">{{ $tag->tag_name }}</a>
                                 @endforeach
                                 </ul>
                             </div>

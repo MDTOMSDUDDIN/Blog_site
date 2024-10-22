@@ -79,9 +79,33 @@ class FrontendController extends Controller
                     });
                 }
             })->paginate(2);
+             $tags=Tag::all();
+             $categories=Category::all();
+             $View_Posts=ViewPost::where('total_read','>=',5)->get();
 
             return view('frontend.search',[
                 'search_posts'=>$search_posts,
+                'tags'=>$tags,
+                'categories'=>$categories,
+                'View_Posts'=>$View_Posts,
+            ]);
+        }
+
+//tag_post section 
+        function tag_post($tag_id){
+            $all ="";  
+            foreach(Post::all() as $post){
+                $after_explode=explode(',', $post->tags);
+                 if(in_array($tag_id, $after_explode)){
+                    $all .=$post->id.',';
+                 }
+            }
+           $explode2=explode(',',$all);
+           $tag_post=Post::find($explode2);
+           $tag=Tag::find($tag_id);
+            return view('frontend.tag_post',[
+                'tag_post'=>$tag_post,
+                'tag'=>$tag,
             ]);
         }
 

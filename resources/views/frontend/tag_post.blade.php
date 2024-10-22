@@ -7,8 +7,8 @@
              <div class="row">
                  <div class="col-lg-12">
                      <div class="section-heading-2-title">
-                         <h1>{{ $category->category_name }}</h1>
-                         <p class="links"><a href="index.html">Home <i class="las la-angle-right"></i></a> {{ $category->category_name }}</p>
+                         <h1>{{ $tag->tag_name }}</h1>
+                         <p class="links"><a href="index.html">Home <i class="las la-angle-right"></i></a> {{ $tag->tag_name }}</p>
                      </div>
                  </div>  
              </div>
@@ -23,7 +23,9 @@
          <div class="row">
              <div class="col-md-12"> 
                  <!--post 1-->
-            @foreach ($posts as $post)
+            @foreach ($tag_post as $post)
+                
+           
                  <div class="post-list post-list-style2">
                      <div class="post-list-image">
                          <a href="post-single.html">
@@ -56,7 +58,7 @@
                          </div>
                      </div>
                  </div>
-             @endforeach       
+                 @endforeach
              </div>
          </div>
      </div>
