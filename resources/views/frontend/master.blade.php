@@ -23,6 +23,29 @@
     <!-- main style -->
     <link rel="stylesheet" href="{{ asset('frontend_asset') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('frontend_asset') }}/css/custom.css">
+    <style>
+        .social-media ul li {
+            margin-top:10px;
+            padding: 5px;
+        }
+        .social-media ul li a span {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color:white;
+            border-radius: 50%;
+        }
+        .social-media ul li a  .fa-facebook-square{
+            background: #3b5998;
+        }
+        .social-media ul li a .fa-linkedin{
+            background: #566586;
+        }
+        .social-media ul li a .fa-whatsapp{
+            background: green;
+        }
+    </style>
 </head>
 
 <body>
@@ -222,6 +245,7 @@
     <script src="{{ asset('frontend_asset') }}/js/owl.carousel.min.js"></script>
     <script src="{{ asset('frontend_asset') }}/js/switch.js"></script>
     <script src="{{ asset('frontend_asset') }}/js/jquery.marquee.js"></script>
+    <script src="{{ asset('js/share.js') }}"></script>
 
 
     <!-- JS main  -->

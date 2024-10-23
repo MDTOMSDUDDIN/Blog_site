@@ -180,25 +180,34 @@
 
                             <div class="widget-stay-connected">
                                 <div class="list">
+                                    <style>
+                                        .icon{ font-size: 20px; color:white; margin-right: 10px;}
+                                    </style>
+                                    <a href="https://web.facebook.com/">
                                     <div class="item color-facebook">
-                                        <a href="#"><i class="fab fa-facebook"></i></a>
+                                        <i class="fab fa-facebook icon"></i>
                                         <p>Facebook</p>
                                     </div>
-
+                                    </a>
+                                    <a href="https://www.instagram.com/">
                                     <div class="item color-instagram">
-                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                        <i class="fab fa-instagram icon"></i>
                                         <p>instagram</p>
                                     </div>
+                                   </a>
 
+                                   <a href="https://x.com/">
                                     <div class="item color-twitter">
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <i class="fab fa-twitter icon"></i>
                                         <p>twitter</p>
                                     </div>
-
-                                    <div class="item color-youtube">
-                                        <a href="#"><i class="fab fa-youtube"></i></a>
+                                    </a>
+                                    <a href="https://www.youtube.com/">
+                                    <div class="item color-youtube"  >
+                                        <i class="fab fa-youtube  icon"></i>
                                         <p>Youtube</p>
                                     </div>
+                                   </a>
                                 </div>
                             </div>
                         </div>

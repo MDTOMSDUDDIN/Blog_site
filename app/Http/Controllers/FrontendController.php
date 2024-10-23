@@ -7,7 +7,10 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\ViewPost;
+use App\Models\Comment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
@@ -46,9 +49,10 @@ class FrontendController extends Controller
             ]);
         }
 
-
+        $comments= Comment::where('post_id', $post->id)->get();
         return view('frontend.post_details',[
             'post'=>$post,
+            'comments'=>$comments,
         ]);
     }
 
@@ -107,6 +111,17 @@ class FrontendController extends Controller
                 'tag_post'=>$tag_post,
                 'tag'=>$tag,
             ]);
+        }
+//-------------------------comments section --------------------------------
+
+        function comment_store(Request $request){
+            Comment::insert([
+                'author_id'=>Auth::guard('author')->id(),
+                'post_id'=>$request->post_id,
+                'comments'=>$request->comments,
+                'created_at'=>Carbon::now(),
+            ]);
+            return back();
         }
 
 }

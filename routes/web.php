@@ -87,3 +87,6 @@ route::get('/category/post/{category_id}',[FrontendController::class,'category_p
 //search
 route::get('/search',[FrontendController::class,'search'])->name('search');
 route::get('/tag_post/{tag_id}',[FrontendController::class,'tag_post'])->name('tag.post');
+
+//comments section 
+route::post('/comment/store',[FrontendController::class,'comment_store'])->name('comment.store');

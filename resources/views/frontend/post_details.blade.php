@@ -51,10 +51,11 @@
                                         @endforeach
                                     </ul>
                                 </div>
+                               
                                 <div class="social-media">
                                     <p>Share on :</p>
                                     <ul class="list-inline">
-                                        <li>
+                                        {{-- <li>
                                             <a href="#">
                                                 <i class="fab fa-facebook"></i>
                                             </a>
@@ -78,7 +79,14 @@
                                             <a href="#" >
                                                 <i class="fab fa-pinterest"></i>
                                             </a>
-                                        </li>
+                                        </li> --}}
+                                        {!!  
+                                            Share::currentPage()
+                                                ->facebook()
+                                                ->twitter()
+                                                ->linkedin('Extra linkedin summary can be passed here')
+                                                ->whatsapp();
+                                         !!}
                                     </ul>
                                 </div>                      
                             </div>
@@ -130,99 +138,82 @@
                                     </div>
                                 </div>
                             </div>
-                             
-                            
+
                             <!--post-single-comments-->
                             <div class="post-single-comments">
                                 <!--Comments-->
                                 <h4 >3 Comments</h4>
                                 <ul class="comments">
                                     <!--comment1-->
-                                    <li class="comment-item pt-0">
-                                        <img src="assets/img/other/user1.jpg" alt="">
+                                @foreach ($comments as $comment )
+                                    <li class="comment-item pt-0 border-0">
+                                        @if ($comment->rel_to_author->photo != null)
+                                            <img src="{{ asset('uploads/author') }}/{{  $comment->rel_to_author->photo }}" alt="">
+                                        @else
+                                             <img src="assets/img/other/user1.jpg" alt="">
+                                        @endif
                                         <div class="content">
                                             <div class="meta">
                                                 <ul class="list-inline">
-                                                    <li><a href="#">Nirmaine Nicole</a> </li>
+                                                    <li><a href="#">{{ $comment->rel_to_author->name }}</a> </li>
                                                     <li class="slash"></li>
-                                                    <li>3 Months Ago</li>
+                                                    <li>{{ $comment->created_at->diffForHumans() }}</li>
                                                 </ul>
                                             </div>
-                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus at doloremque adipisci eum placeat
-                                                quod non fugiat aliquid sit similique!
-                                            </p>
-                                            <a href="#" class="btn-reply"><i class="las la-reply"></i> Reply</a>
-                                        </div>
-                                
+                                            <p>{{ $comment->comments }}</p>
+                                            <a onclick="toggleReplyForm({{ $comment->id }})" class="btn-reply"><i
+                                                class="las la-reply"></i> Reply</a> 
+                                                <div class="reply-form" id="reply-form-{{ $comment->id }}"
+                                                    style="display:none;">
+                                                    <form class="form" action="{{ route('comment.store') }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                                                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                                                
+                                                                <textarea name="comments" cols="30" rows="2" class="form-control" placeholder="Message*" required="required"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <button type="submit" name="submit" class="btn-custom">reply</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                       </div>
                                     </li>
-                                    <!--comment2-->
-                                    <li class="comment-item">
-                                        <img src="assets/img/other/use2.jpg" alt="">
-                                        <div class="content">
-                                            <div class="meta">
-                                                <ul class="list-inline">
-                                                    <li><a href="#">adam smith</a> </li>
-                                                    <li class="slash"></li>
-                                                    <li>3 Months Ago</li>
-                                                </ul>
-                                            </div>
-                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus at doloremque adipisci eum placeat
-                                                quod non fugiat aliquid sit similique!
-                                            </p>
-                                            <a href="#" class="btn-reply"><i class="las la-reply"></i> Reply</a>
-                                        </div>
-                                    </li>
-                                       <!--comment3-->
-                                    <li class="comment-item">
-                                        <img src="assets/img/other/user3.jpg" alt="">
-                                        <div class="content">
-                                            <div class="meta">
-                                                <ul class="list-inline">
-                                                    <li><a href="#">Emma david</a> </li>
-                                                    <li class="slash"></li>
-                                                    <li>3 Months Ago</li>
-                                                </ul>
-                                            </div>
-                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus at doloremque adipisci eum placeat
-                                                quod non fugiat aliquid sit similique!
-                                            </p>
-                                            <a href="#" class="btn-reply"><i class="las la-reply"></i> Reply</a>
-                                        </div>
-                                    </li>
-                                
+                                    @endforeach
                                 </ul>
                                 <!--Leave-comments-->
-                                <div class="comments-form">
+                                @auth('author')
+                                <div class="comments-form" >
                                     <h4 >Leave a Reply</h4>
                                     <!--form-->
-                                    <form class="form " action="#" method="POST" id="main_contact_form">
+                                    <form class="form " action="{{ route('comment.store') }}" method="POST">
+                                        @csrf
                                         <p>Your email adress will not be published ,Requied fileds are marked*.</p>
-                                        <div class="alert alert-success contact_msg" style="display: none" role="alert">
-                                            Your message was sent successfully.
-                                        </div>
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input type="text" name="name" id="name" class="form-control" placeholder="Name*" required="required">
+                                                    <input type="hidden" name=post_id value="{{ $post->id }}">
+                                                    <input type="text" class="form-control" placeholder="Name*" required="required" value="{{ Auth::guard('author')->user()->name }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email*" required="required">
+                                                    <input type="email" class="form-control" placeholder="Email*" required="required" value="{{ Auth::guard('author')->user()->email }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Message*" required="required"></textarea>
+                                                    <textarea name="comments" cols="30" rows="5" class="form-control" placeholder="Message*" required="required"></textarea>
                                                 </div>
                                             </div>
                                         
                                             <div class="col-lg-12">
-                                                <div class="mb-20">
-                                                    <input name="name" type="checkbox" value="1" required="required">
-                                                    <label for="name"><span>save my name , email and website in this browser for the next time I comment.</span></label>
-                                                </div>
-                                            
+
                                                 <button type="submit" name="submit" class="btn-custom">
                                                     Send Comment
                                                 </button>
@@ -231,10 +222,24 @@
                                     </form>
                                     <!--/-->
                                 </div>
+                                @endauth
                             </div>
                         </div>
                 </div>
             </div>
         </div>
     </section>
+@endsection
+
+@section('footer_script')
+    <script>
+        function toggleReplyForm(commentId) {
+            const form = document.getElementById('reply-form-' + commentId);
+            if (form.style.display == 'none') {
+                form.style.display = 'block';
+            } else {
+                form.style.display = 'none';
+            }
+        }
+    </script>
 @endsection
