@@ -54,11 +54,19 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('authors') }}" >
-              <i class="link-icon" data-feather="authors"></i>
+              <i class="link-icon" data-feather="users"></i>
               <span class="link-title">Authors</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('role') }}" >
+              <i class="link-icon" data-feather="users"></i>
+              <span class="link-title">Role</span>
+              <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+          </li>
+
             <div class="collapse" id="emails">
               <ul class="nav sub-menu">
                 <li class="nav-item">

@@ -6,6 +6,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use GuzzleHttp\Middleware;
@@ -90,3 +91,12 @@ route::get('/tag_post/{tag_id}',[FrontendController::class,'tag_post'])->name('t
 
 //comments section 
 route::post('/comment/store',[FrontendController::class,'comment_store'])->name('comment.store');
+
+
+//Role 
+//role management using laravel packages => spatli permission laravel 
+route::get('/role',[RoleController::class,'role'])->name('role');
+route::post('/permission/store',[RoleController::class,'permission_store'])->name('permission.store');
+route::post('/role/store',[RoleController::class,'role_store'])->name('role.store');
+
+
