@@ -98,5 +98,6 @@ route::post('/comment/store',[FrontendController::class,'comment_store'])->name(
 route::get('/role',[RoleController::class,'role'])->name('role');
 route::post('/permission/store',[RoleController::class,'permission_store'])->name('permission.store');
 route::post('/role/store',[RoleController::class,'role_store'])->name('role.store');
+route::post('/role/assign',[RoleController::class,'role_assign'])->name('role.assign');
 
 

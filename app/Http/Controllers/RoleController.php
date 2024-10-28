@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -11,9 +12,11 @@ class RoleController extends Controller
     function role(){
         $permissions=Permission::all();
         $roles=Role::all();
+        $users=User::all();
         return view('admin.role.role',[
             'permissions'=>$permissions,
             'roles'=>$roles,
+            'users'=>$users,
         ]);
     }
    
@@ -28,5 +31,10 @@ class RoleController extends Controller
         $role->givePermissionTo($request->permission);
         return back();
 
+    }
+    function role_assign(Request $request){
+        $user=User::find($request->user_id);
+        $user->assignRole($request->role);
+        return back();
     }
 }
