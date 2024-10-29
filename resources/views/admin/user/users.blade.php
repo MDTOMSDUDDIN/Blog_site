@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="row">
+    @can('users')
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header bg-primary">
@@ -31,7 +32,11 @@
                                 <img src="{{ asset('uploads/user') }}/{{ $user->photo }}" alt="">
                                 @endif
                                </td>
-                            <td><a class="btn btn-danger" href="{{ route('user.delete',$user->id) }}">Delete</a></td>
+                            @can('user_delete')
+                                <td>
+                                    <a class="btn btn-danger" href="{{ route('user.delete',$user->id) }}">Delete</a>
+                                </td>
+                            @endcan
                         </tr>
     
                    @endforeach
@@ -40,6 +45,8 @@
             </div>
         </div>
     </div>
+    @endcan
+    @can('user_add')
     <div class="col-lg-4">
         <div class="card">
             <div class="card-header bg-primary">
@@ -70,5 +77,6 @@
             </div>
         </div>
     </div>
+    @endcan
 </div>
 @endsection

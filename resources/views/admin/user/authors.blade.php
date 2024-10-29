@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="row">
+    @can('authors')
     <div class="col-lg-11">
         <div class="card">
             <div class="card-header bg-primary">
@@ -39,5 +40,6 @@
             </div>
         </div>
     </div>
+    @endcan
 </div>
 @endsection

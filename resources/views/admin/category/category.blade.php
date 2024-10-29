@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="row">
+  @can('category_access')
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header bg-primary">
@@ -63,6 +64,9 @@
             </div>
         </div>
     </div>
+  @endcan
+  
+  @can('category_add')
     <div class="col-lg-4">
       <div class="card">
         <div class="card-header bg-primary">
@@ -98,6 +102,7 @@
         </div>
       </div>
     </div>
+  @endcan
 </div>
 @endsection
 @section('script')

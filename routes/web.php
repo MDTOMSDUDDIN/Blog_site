@@ -99,5 +99,6 @@ route::get('/role',[RoleController::class,'role'])->name('role');
 route::post('/permission/store',[RoleController::class,'permission_store'])->name('permission.store');
 route::post('/role/store',[RoleController::class,'role_store'])->name('role.store');
 route::post('/role/assign',[RoleController::class,'role_assign'])->name('role.assign');
-
+route::get('/role/delete/{role_id}',[RoleController::class,'role_delete'])->name('role.delete');
+route::get('/role/remove/{user_id}',[RoleController::class,'role_remove'])->name('role.remove');
 

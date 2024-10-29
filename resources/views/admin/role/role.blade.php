@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+@can('role_access')
 <div class="row">
     <div class="col-lg-8">
         <div class="card">
@@ -26,7 +27,7 @@
                             @endforeach
                         </td>
                         <td>
-                            <a href="" class="btn btn-danger">Delete</a>
+                            <a href="{{ route('role.delete',$role->id) }}" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                   
@@ -53,12 +54,14 @@
                             <td>{{ $index+1 }}</td>
                             <td>{{ $user->name }}</td>
                             <td>
-                                @foreach ($user->getRoleNames() as $role)
+                                @forelse ($user->getRoleNames() as $role)
                                     <span class="badge badge-primary">{{ $role }}</span>
-                                @endforeach
+                                @empty
+                                   Not Assigned
+                                @endforelse
                             </td>
                             <td>
-                                <a href="" class="btn btn-danger">Remove Role</a>
+                                <a href="{{ route('role.remove',$user->id) }}" class="btn btn-danger">Remove Role</a>
                             </td>
                         </tr>
                     @endforeach
@@ -147,5 +150,8 @@
         </div>
     </div>
 </div>
+@else
+<h3>Your donot access to  this page </h3>
+@endcan
     
 @endsection
