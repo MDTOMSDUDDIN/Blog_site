@@ -157,7 +157,9 @@
                         <div class="col-md-6">
                             <div class="newslettre">
                                 <div class="newslettre-info">
-                                    <h3>Subscribe To OurNewsletter</h3>
+                                    <h3>Subscribe To OurNewsletter
+                                        
+                                    </h3>
                                     <p>Sign up for free and be the first to get notified about new posts.</p>
                                 </div>
 
@@ -195,7 +197,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="copyright">
-                                <p>© 2022, AssiaGroupe, All Rights Reserved.</p>
+                                <p>© 2024, mdtomasuddin1@gmail.com, All Rights Reserved.</p>
                             </div>
                         </div>
                     </div>

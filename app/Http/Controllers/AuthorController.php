@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AuthorVerifyMail;
 use App\Models\Author;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -33,6 +35,9 @@ class AuthorController extends Controller
             'password'=>bcrypt($request->password),
             'created_at'=>Carbon::now(),
         ]);
+
+        Mail::to($request->email)->send(new AuthorVerifyMail());
+
         return back()->with('author_register','Registation Successfully ! Your Account is Pending for Approval, you will get confirmation Email When Your Account Active ?');
     }
     
