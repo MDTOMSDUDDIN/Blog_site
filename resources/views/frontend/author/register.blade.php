@@ -7,10 +7,16 @@
             <div class="col-lg-6 col-md-8 m-auto">
                 <div class="login-content">
                     <h4>Sign up</h4>
-                    @if (session('author_register'))
+                    {{-- @if (session('author_register'))
                         <div class="alert alert-success">{{ (session('author_register')) }}</div>
+                    @endif --}}
+                    @if (session('verify'))
+                        <div class="alert alert-success">{{ (session('verify')) }}</div>
                     @endif
-                    <!--form-->              
+
+                    
+                    <!--form-->     
+
                     <form  class="sign-form widget-form" action="{{ route('author.register') }}" method="POST">
                         @csrf
                         <div class="form-group">

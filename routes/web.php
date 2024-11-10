@@ -72,7 +72,9 @@ Route::get('/authors/delete/{author_id}',[UserController::class,'authors_delete'
 route::get('/author/edit',[AuthorController::class,'author_edit'])->name('author.edit');
 route::post('/author/profile/update',[AuthorController::class,'author_profile_update'])->name('author.profile.update');
 route::post('/author/pass/update',[AuthorController::class,'author_pass_update'])->name('author.pass.update');
-
+route::get('/author/verify/{token}',[AuthorController::class,'author_verify'])->name('author.verify');
+route::get('/request/verify',[AuthorController::class,'request_verify'])->name('request.verify');
+route::post('/request/verify/send',[AuthorController::class,'request_verify_send'])->name('request.verify.send');
 
 //Post controller
 route::get('/add/post',[PostController::class,'add_post'])->name('add.post');
