@@ -19,6 +19,11 @@
                     @if (session('not_verify'))
                     <div class="alert alert-danger">{{ (session('not_verify')) }} <strong><a href="{{ route("request.verify") }}">Request for email varification link again </a></strong></div>
                     @endif
+                    @if (session('reset'))
+                    <div class="alert alert-success">{{ session('reset') }}</div>
+                    @endif
+
+
                     <form  action="{{ route('author.login') }}" class="sign-form widget-form " method="POST">
                         @csrf
                         <div class="form-group">
@@ -34,7 +39,7 @@
                             @endif
                         </div>
                         <div class="sign-controls form-group">
-                            <a href="#" class="btn-link ">Forgot Password?</a>
+                            <a href="{{ route('pass.reset.req') }}" class="btn-link ">Forgot Password?</a>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn-custom">Login in</button>
