@@ -42,7 +42,7 @@ class CategoryController extends Controller
         return back()->with('Category_add','Category Add Successfull !');
       
     }
-//category edit section 
+     //category editing section 
         function category_edit($category_id){
             $category=category::find($category_id);
             return view('admin.category.edit',compact('category'));
