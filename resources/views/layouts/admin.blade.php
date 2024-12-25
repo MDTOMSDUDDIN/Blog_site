@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Laravel Blog site project dashboard panel</title>
+	<title>Blog_site</title>
 	<!-- core:css -->
 	<link rel="stylesheet" href="{{ asset('admin_asset') }}/vendors/core/core.css">
 	<!-- endinject -->
@@ -27,7 +27,7 @@
 		<nav class="sidebar">
       <div class="sidebar-header">
         <a href="#" class="sidebar-brand">
-          <span>TOMAS</span>
+          Blog<span>site</span>
         </a>
         <div class="sidebar-toggler not-active">
           <span></span>
@@ -46,42 +46,26 @@
           </li>
           <li class="nav-item nav-category">web apps</li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('users') }}" >
-              <i class="link-icon" data-feather="users"></i>
-              <span class="link-title">Users</span>
-              <i class="link-arrow" data-feather="chevron-down"></i>
+            <a class="nav-link" href="{{ route('users') }}">
+              <i class="link-icon" data-feather="mail"></i>
+              <span class="link-title">users</span>
+              <i class="link-arrow" ></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('authors') }}" >
-              <i class="link-icon" data-feather="users"></i>
-              <span class="link-title">Authors</span>
-              <i class="link-arrow" data-feather="chevron-down"></i>
+            <a class="nav-link" href="{{ route('authors') }}">
+                <i class="link-icon" data-feather="users"></i>
+                <span class="link-title">Authors</span>
+                <i class="link-arrow"></i>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('role') }}" >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('role') }}">
               <i class="link-icon" data-feather="users"></i>
-              <span class="link-title">Role</span>
-              <i class="link-arrow" data-feather="chevron-down"></i>
-            </a>
-          </li>
-
-            <div class="collapse" id="emails">
-              <ul class="nav sub-menu">
-                <li class="nav-item">
-                  <a href="../../pages/email/inbox.html" class="nav-link">Inbox</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/email/read.html" class="nav-link">Read</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/email/compose.html" class="nav-link">Compose</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-
+              <span class="link-title">Role Manager</span>
+              <i class="link-arrow"></i>
+          </a>
+      </li>
           <li class="nav-item nav-category">Components</li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false" aria-controls="uiComponents">
@@ -104,7 +88,7 @@
             <a class="nav-link" data-toggle="collapse" href="#advancedUI" role="button" aria-expanded="false" aria-controls="advancedUI">
               <i class="link-icon" data-feather="anchor"></i>
               <span class="link-title">Tags</span>
-              <i class="link-arrow" data-feather="chevron-down"></i>
+              <i class="link-arrow" data-feather="chevron-down"  ></i>
             </a>
             <div class="collapse" id="advancedUI">
               <ul class="nav sub-menu">
@@ -117,22 +101,13 @@
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#forms" role="button" aria-expanded="false" aria-controls="forms">
               <i class="link-icon" data-feather="inbox"></i>
-              <span class="link-title">Forms</span>
+              <span class="link-title">subscriptions</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
             <div class="collapse" id="forms">
               <ul class="nav sub-menu">
                 <li class="nav-item">
-                  <a href="../../pages/forms/basic-elements.html" class="nav-link">Basic Elements</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/forms/advanced-elements.html" class="nav-link">Advanced Elements</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/forms/editors.html" class="nav-link">Editors</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/forms/wizard.html" class="nav-link">Wizard</a>
+                  <a href="{{ route('admin.subscriptions') }}" class="nav-link">subscriptions</a>
                 </li>
               </ul>
             </div>
@@ -140,65 +115,46 @@
           <li class="nav-item">
             <a class="nav-link"  data-toggle="collapse" href="#charts" role="button" aria-expanded="false" aria-controls="charts">
               <i class="link-icon" data-feather="pie-chart"></i>
-              <span class="link-title">Charts</span>
+              <span class="link-title">FAQ</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
             <div class="collapse" id="charts">
               <ul class="nav sub-menu">
                 <li class="nav-item">
-                  <a href="../../pages/charts/apex.html" class="nav-link">Apex</a>
+                  <a href="{{ route('faq.create') }}" class="nav-link">Add FAQ</a>
                 </li>
                 <li class="nav-item">
-                  <a href="../../pages/charts/chartjs.html" class="nav-link">ChartJs</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/charts/flot.html" class="nav-link">Flot</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/charts/morrisjs.html" class="nav-link">Morris</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/charts/peity.html" class="nav-link">Peity</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/charts/sparkline.html" class="nav-link">Sparkline</a>
+                  <a href="{{ route('faq.index') }}" class="nav-link">List All FAQ </a>
                 </li>
               </ul>
             </div>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" role="button" aria-expanded="false" aria-controls="tables">
               <i class="link-icon" data-feather="layout"></i>
-              <span class="link-title">Table</span>
+              <span class="link-title">Contact</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
             <div class="collapse" id="tables">
               <ul class="nav sub-menu">
                 <li class="nav-item">
-                  <a href="../../pages/tables/basic-table.html" class="nav-link">Basic Tables</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/tables/data-table.html" class="nav-link">Data Table</a>
+                  <a href="{{ route('admin.contact.messages') }}" class="nav-link">Contact Message</a>
                 </li>
               </ul>
             </div>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#icons" role="button" aria-expanded="false" aria-controls="icons">
               <i class="link-icon" data-feather="smile"></i>
-              <span class="link-title">Icons</span>
+              <span class="link-title">Abouts</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
             <div class="collapse" id="icons">
               <ul class="nav sub-menu">
                 <li class="nav-item">
-                  <a href="../../pages/icons/feather-icons.html" class="nav-link">Feather Icons</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/icons/flag-icons.html" class="nav-link">Flag Icons</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/icons/mdi-icons.html" class="nav-link">Mdi Icons</a>
+                  <a href="../../pages/icons/feather-icons.html" class="nav-link">Abouts Page</a>
                 </li>
               </ul>
             </div>
@@ -506,20 +462,22 @@
 						</li>
 						<li class="nav-item dropdown nav-profile">
 							<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								@if (Auth::user()->photo == null)
-                 <img src="https://via.placeholder.com/30x30" alt="profile">
-                @else 
-                 <img src="{{ asset('uploads/user') }}/{{ Auth::user()->photo }}" alt="">
+                @if (Auth::user()->photo == null)
+                  <img src="https://via.placeholder.com/30x30" alt="profile">
+                  @else
+                    <img src="{{ asset('uploads/user') }}/{{ Auth::user()->photo }}" alt="">
                 @endif
+								
 							</a>
 							<div class="dropdown-menu" aria-labelledby="profileDropdown">
 								<div class="dropdown-header d-flex flex-column align-items-center">
 									<div class="figure mb-3">
-									@if (Auth::user()->photo == null)
-                    <img src="https://via.placeholder.com/30x30" alt="profile">
-                  @else 
-                  <img src="{{ asset('uploads/user') }}/{{ Auth::user()->photo }}" alt="">
-                  @endif
+
+										@if (Auth::user()->photo == null)
+                  <img src="https://via.placeholder.com/30x30" alt="profile">
+                  @else
+                    <img src="{{ asset('uploads/user') }}/{{ Auth::user()->photo }}" alt="">
+                @endif
 									</div>
 									<div class="info text-center">
 										<p class="name font-weight-bold mb-0">{{ Auth::user()->name }}</p>
@@ -528,20 +486,22 @@
 								</div>
 								<div class="dropdown-body">
 									<ul class="profile-nav p-0 pt-3">
+
 										<li class="nav-item">
 											<a href="{{ route('edit.profile') }}" class="nav-link">
 												<i data-feather="edit"></i>
 												<span>Edit Profile</span>
 											</a>
 										</li>
+
 										<li class="nav-item">
                       <form method="POST" action="{{ route('logout') }}">
                         @csrf
-											<button type="submit" class="nav-link border-0 bg-transparent">
-												<i data-feather="log-out"></i>
-												<span>Log Out</span>
-											</button>
-                      </form>
+                        <button type="submit" class="nav-link border-0 bg-transparent">
+                          <i data-feather="log-out"></i>
+                          <span>Log Out</span>
+                        </button>
+                    </form>
 										</li>
 									</ul>
 								</div>
@@ -554,13 +514,12 @@
 
 			<div class="page-content">
         @yield('content')
-
 			</div>
 
 			<!-- partial:../../partials/_footer.html -->
 			<footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
-				<p class="text-muted text-center text-md-left">Copyright © 2024 <span>MD TOMAS UDDIN</span></a>. All rights reserved</p>
-				<p class="text-muted text-center text-md-left mb-0 d-none d-md-block">Handcrafted With <i class="mb-1 text-primary ml-1 icon-small" data-feather="heart"></i></p>
+				<p class="text-muted text-center text-md-left">©2024 mdtomasuddin1@gmail.com <a href="#" target="_blank">Emil</a>.->mdtomasuddin1@gmail.com</p>
+				<p class="text-muted text-center text-md-left mb-0 d-none d-md-block">MD TOMAS UDDIN<i class="mb-1 text-primary ml-1 icon-small" data-feather="heart"></i></p>
 			</footer>
 			<!-- partial -->
 	

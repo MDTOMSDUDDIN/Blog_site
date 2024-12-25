@@ -1,40 +1,48 @@
 @extends('frontend.master')
 @section('content')
-   <!--Login-->
-   <section class="login">
+ <!--Sing Up-->
+ <section class="login">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6 col-md-8 m-auto">
                 <div class="login-content">
                     <h4>Sign up</h4>
-                    {{-- @if (session('author_register'))
-                        <div class="alert alert-success">{{ (session('author_register')) }}</div>
+                    <!--form-->
+                    {{-- @if(session('author_register'))
+                    <div class="alert alert-success">{{ session('author_register') }}</div>
                     @endif --}}
-                    @if (session('verify'))
-                        <div class="alert alert-success">{{ (session('verify')) }}</div>
+                    @if(session('verify'))
+                    <div class="alert alert-success">{{ session('verify') }}</div>
                     @endif
-
-                    
-                    <!--form-->     
-
-                    <form  class="sign-form widget-form" action="{{ route('author.register') }}" method="POST">
+                        
+                               
+                    <form action="{{ route('author.register') }}" class="sign-form widget-form" method="POST">
                         @csrf
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Full Name*" name="name" value="">
+                           
+                                @error('name')
+                                <strong class="text-danger">{{ $message }}</strong>
+                                @enderror 
+                      
                         </div>
 
                         <div class="form-group">
                             <input type="email" class="form-control" placeholder="Email Address*" name="email" value="">
-                            @error('email')
-                                <strong class="text-danger">{{ $massage }}</strong>
-                            @enderror
+                           
+                                @error('email')
+                                <strong class="text-danger">{{ $message }}</strong>
+                                @enderror 
+                          
                         </div>
 
                         <div class="form-group">
                             <input type="password" class="form-control" placeholder="Password*" name="password" value="">
-                            @error('password')
-                                <strong class="text-danger">{{ $massage }}</strong>
-                            @enderror
+                            
+                                @error('password')
+                                <strong class="text-danger">{{ $message }}</strong>
+                                @enderror 
+                            
                         </div>
                         <div class="sign-controls form-group">
                             <div class="custom-control custom-checkbox">
@@ -52,6 +60,5 @@
             </div>
          </div>
     </div>
-</section>       
-
+</section>
 @endsection

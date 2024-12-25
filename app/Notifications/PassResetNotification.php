@@ -17,7 +17,7 @@ class PassResetNotification extends Notification
     public $data='';
     public function __construct($data)
     {
-            $this->data=$data;
+        $this -> data = $data;
     }
 
     /**
@@ -35,7 +35,7 @@ class PassResetNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)->view('frontend.author.pass_reset_mail',[
+        return (new MailMessage) ->view('frontend.author.pass_reset_mail',[
             'data'=>$this->data,
         ]);
                     // ->line('The introduction to the notification.')

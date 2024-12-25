@@ -25,20 +25,21 @@ class PasswordRequest extends FormRequest
     {
         return [
             'current_password'=>'required',
-            'password'=>['required',Password::min(8)
+            'password'=>['required','confirmed',Password::min(8)
             ->letters()
             ->mixedCase()
             ->numbers()
-            ->symbols()],
+            ->symbols()
+        ],
             'password_confirmation'=>'required',
         ];
     }
     public function messages(): array
     {
         return [
-            'current_password.required'=>'please Enter Your Current Password',
-            'password.required'=>'please Enter Your New Password',
-            'password_confirmation.required'=>'please Enter Your confirmation Password',
+            'current_password.required'=>'Please Enter Current Password!',
+            'password.required'=>'Please Enter New Password!',
+            'password_confirmation.required'=>'Please Enter Confirm Password!',
         ];
     }
 }

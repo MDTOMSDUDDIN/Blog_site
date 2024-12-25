@@ -12,15 +12,16 @@ use Illuminate\Queue\SerializesModels;
 class AuthorVerifyMail extends Mailable
 {
     use Queueable, SerializesModels;
+   
+
 
     /**
      * Create a new message instance.
      */
-    public $data='';
-
+    public $data = '';
     public function __construct($data)
     {
-        $this->data=$data;
+        $this->data = $data;
     }
 
     /**

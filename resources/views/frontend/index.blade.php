@@ -1,33 +1,44 @@
 @extends('frontend.master')
 
 @section('content')
- <!-- blog-slider-->
- <section class="blog blog-home4 d-flex align-items-center justify-content-center">
+<!-- blog-slider-->
+<section class="blog blog-home4 d-flex align-items-center justify-content-center">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="owl-carousel">
-                  @foreach ($sliders as $slider)
+                    @foreach ($sliders as $slider )
+                        
+                   
+                    <!--post1-->
                     <div class="blog-item" style="background-image: url('{{ asset('uploads/post/preview') }}/{{ $slider->preview }}')">
                         <div class="blog-banner">
                             <div class="post-overly">
                                 <div class="post-overly-content">
                                     <div class="entry-cat">
+                                        <!-- Typo fixed from $silder to $slider -->
                                         <a href="{{ route('category.post', $slider->category_id) }}" class="category-style-2">{{ $slider->rel_to_category->category_name }}</a>
+
                                     </div>
                                     <h2 class="entry-title">
-                                        <a href="{{ route('post.details', $slider->slug) }}">{{ $slider->title }}</a>
+                                        <a href="{{ route('post.details', $slider->slug) }}">{{ $slider->title }} </a>
                                     </h2>
                                     <ul class="entry-meta">
-                                        <li class="post-author"> <a href="author.html">{{ $slider->rel_to_author->name }}</a></li>
-                                        <li class="post-date"> <span class="line"></span>{{ $slider->created_at->diffForHumans() }}</li>
-                                        <li class="post-timeread"> <span class="line"></span> {{ $slider->read_time }}</li>
+                                        <li class="post-author"> <a href="{{ route('author.post',$slider->author_id) }}">{{ $slider->rel_to_author->name }}</a></li>
+                                        <li class="post-date">
+                                            <span class="line"></span> {{ $slider->created_at->diffForHumans() }}
+                                        </li>
+                                        
+                                        <li class="post-timeread"> <span class="line"></span> {{ $slider->read_time }} mins read</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                  @endforeach
+
+                    <!--/-->
+
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -41,14 +52,14 @@
             <div class="row">
                 <div class="col-lg-12 ">
                     <div class="categories-items">
-                        @foreach ($categories as $category)
-                        <a class="category-item" href="{{ route('category.post',$category->id) }}">
+                        @foreach ($categories as $category )
+                        <a class="category-item" href="{{ route('category.post',$category ->id) }}">
                             <div class="image">
                                 <img src="{{ asset('uploads/category') }}/{{ $category->category_image }}" alt="">
                             </div>
-                            <p>{{ $category->category_name }} <span>{{ App\Models\Post::where('category_id',$category->id)->count() }}</span> </p>
+                            <p>{{ $category->category_name }} <span>{{ App\models\Post::where('category_id',$category->id)->count() }}</span> </p>
                         </a>
-                        @endforeach    
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -66,7 +77,7 @@
                         <h3>recent Articles </h3>
                         <p>Discover the most outstanding articles in all topics of life.</p>
                     </div>
-                    @foreach ($posts as  $post )
+                    @foreach ($posts as $post )
                     <!--post1-->
                     <div class="post-list post-list-style4">
                         <div class="post-list-image">
@@ -77,9 +88,9 @@
                         <div class="post-list-content">
                             <ul class="entry-meta">
                                 <li class="entry-cat">
-                                    <a href="{{ route('category.post', $post->category_id) }}" class="category-style-1">{{ $post->rel_to_category->category_name }}</a>
+                                    <a href="{{ route('category.post',$post->category_id) }}" class="category-style-1">{{ $post->rel_to_category->category_name }}</a>
                                 </li>
-                                <li class="post-date"> <span class="line"></span>{{ $post->created_at->diffForHumans() }}</li>
+                                <li class="post-date"> <span class="line"></span> {{ $post->created_at->diffForHumans() }}</li>
                             </ul>
                             <h5 class="entry-title">
                                 <a href="{{ route('post.details',$post->slug) }}">{{ $post->title }}</a>
@@ -90,11 +101,12 @@
                                         class="las la-long-arrow-alt-right"></i></a>
                             </div>
                         </div>
-                    </div>           
+                    </div>
                     @endforeach
+
                     <!--pagination-->
                     {{-- <div class="pagination">
-                           <div class="pagination-area">
+                        <div class="pagination-area">
                             <div class="pagination-list">
                                 <ul class="list-inline">
                                     <li><a href="#"><i class="las la-arrow-left"></i></a></li>
@@ -107,7 +119,10 @@
                             </div>
                         </div>
                     </div> --}}
-                    {{ $posts->links() }}
+                    {{ $posts->links('vendor.pagination.custom') }}
+                    
+
+
                 </div>
             </div>
 
@@ -128,49 +143,56 @@
                             </div>
                         </div>
 
-                        <!--popular-posts-->
-                        <div class="widget">
-                            <div class="widget-title">
-                                <h5>popular Posts</h5>
-                            </div>
-
-                            <ul class="widget-popular-posts">
-                                <!--post1-->
-                            @foreach ($View_Posts as $View_Post)
-                            <li class="small-post">
-                                <div class="small-post-image">
-                                    <a href="post-single.html">
-                                        <img src="{{ asset('uploads/post/thumbnail') }}/{{ $View_Post->rel_to_post->thumbnail }}" alt="">
-                                        <small class="nb">{{ $View_Post->total_read }}</small>
-                                    </a>
-                                </div>
-                                <div class="small-post-content">
-                                    <p>
-                                        <a href="post-single.html">{{ $View_Post->rel_to_post->title }}</a>
-                                    </p>
-                                    <small> <span class="slash"></span>{{ $View_Post->rel_to_post->created_at->diffForHumans() }}</small>
-                                </div>
-                            </li>
-
-                            @endforeach
-                               
-                            </ul>
+                       <!-- popular-posts -->
+                    <div class="widget">
+                        <div class="widget-title">
+                            <h5>Popular Posts</h5>
                         </div>
 
+                        <ul class="widget-popular-posts">
+                            @forelse ($popular_posts as $popular)
+                                <!-- Single Popular Post -->
+                                <li class="small-post">
+                                    <div class="small-post-image">
+                                        <a href="{{ route('post.details', $popular->rel_to_post->slug) }}">
+                                            <img src="{{ asset('uploads/post/thumbnail/' . $popular->rel_to_post->thumbnail) }}" alt="{{ $popular->rel_to_post->title }}">
+                                            <small class="nb">{{ $popular->total_read }}</small>
+                                        </a>
+                                    </div>
+                                    <div class="small-post-content">
+                                        <p>
+                                            <a href="{{ route('post.details', $popular->rel_to_post->slug) }}">{{ $popular->rel_to_post->title }}</a>
+                                        </p>
+                                        <small><span class="slash"></span> {{ $popular->rel_to_post->created_at->diffForHumans() }}</small>
+                                    </div>
+                                </li>
+                            @empty
+                                <h2>No Popular Post available!</h2>
+                            @endforelse
+                        </ul>
+                    </div>
+
+
                         <!--newslatter-->
-                        <div class="widget widget-newsletter">
-                            <h5>Subscribe To Our Newsletter</h5>
+                        <div id="newsletter-heading" class="widget widget-newsletter">
+                            <h5 >Subscribe To Our Newsletter</h5> 
                             <p>No spam, notifications only about new products, updates.</p>
-                            <form action="#" class="newslettre-form">
+                        
+                            <form action="{{ route('subscriptions.subscribe') }}" method="POST" class="newslettre-form" id="subscriptionForm">
+                                @csrf
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Your Email Adress"
-                                            required="required">
+                                        <input type="email" name="email" class="form-control" placeholder="Your Email Address" required="required">
                                     </div>
                                     <button class="btn-custom" type="submit">Subscribe now</button>
                                 </div>
                             </form>
+                        
+                            @if (session('success'))
+                                <div class="alert alert-success" id="success-message">{{ session('success') }}</div> 
+                            @endif
                         </div>
+                        
 
                         <!--stay connected-->
                         <div class="widget ">
@@ -180,34 +202,25 @@
 
                             <div class="widget-stay-connected">
                                 <div class="list">
-                                    <style>
-                                        .icon{ font-size: 20px; color:white; margin-right: 10px;}
-                                    </style>
-                                    <a href="https://web.facebook.com/">
                                     <div class="item color-facebook">
-                                        <i class="fab fa-facebook icon"></i>
+                                        <a href="#"><i class="fab fa-facebook"></i></a>
                                         <p>Facebook</p>
                                     </div>
-                                    </a>
-                                    <a href="https://www.instagram.com/">
+
                                     <div class="item color-instagram">
-                                        <i class="fab fa-instagram icon"></i>
+                                        <a href="#"><i class="fab fa-instagram"></i></a>
                                         <p>instagram</p>
                                     </div>
-                                   </a>
 
-                                   <a href="https://x.com/">
                                     <div class="item color-twitter">
-                                        <i class="fab fa-twitter icon"></i>
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
                                         <p>twitter</p>
                                     </div>
-                                    </a>
-                                    <a href="https://www.youtube.com/">
-                                    <div class="item color-youtube"  >
-                                        <i class="fab fa-youtube  icon"></i>
+
+                                    <div class="item color-youtube">
+                                        <a href="#"><i class="fab fa-youtube"></i></a>
                                         <p>Youtube</p>
                                     </div>
-                                   </a>
                                 </div>
                             </div>
                         </div>
@@ -220,12 +233,15 @@
                             </div>
                             <div class="widget-tags">
                                 <ul class="list-inline">
-                                @foreach ($tags as $tag)
-                                <a href="{{ route('tag.post',$tag->id) }}" class="badge badge-light text-success m-1 p-1">{{ $tag->tag_name }}</a>
-                                @endforeach
+                                    @foreach ($tags as $tag )
+                                    <li>
+                                        <a href="{{ route('tag.post',$tag->id) }}"> {{ $tag -> tag_name }} </a>
+                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -234,12 +250,27 @@
     </div>
 </section>
 @endsection
+
 @section('footer_script')
 <script>
-     $('.btn-submit').click(function(){
-           let search_keyword=$('#gsearch').val();
-           let link="{{ route('search')}}"+"?q="+search_keyword;
-           window.location.href=link;
-        });
+    $('.btn-submit').click(function() {
+    let search_keyword=$('#gsearch').val();
+    let link="{{ route('search') }}"+"?q="+search_keyword;           
+    window.location.href = link;
+    
+});
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+    
+        @if(session('success'))
+            $('html, body').animate({
+                scrollTop: $('#newsletter-heading').offset().top 
+            }, 1000); 
+        @endif
+    });
+</script>
+
 @endsection

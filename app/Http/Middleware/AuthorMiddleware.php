@@ -18,7 +18,10 @@ class AuthorMiddleware
     {
         if(!Auth::guard('author')->check()){
             return redirect()->route('author.login.page');
+
         }
+
+
         return $next($request);
     }
 }

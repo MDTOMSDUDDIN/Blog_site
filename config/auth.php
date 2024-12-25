@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Author;
+
 return [
 
     /*
@@ -70,8 +72,9 @@ return [
         ],
         'authors' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Author::class),
+            'model' => env('AUTH_MODEL', Author::class),
         ],
+
         
     ],
 
