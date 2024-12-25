@@ -9,11 +9,12 @@
                     <div class="authors-info">
                     <div class="image">
                         <a href="author.html" class="image">
-                            @if ($author->photo != null) 
-                                <img src="{{ asset('uploads/author/' . $author->photo) }}" alt="">
-                            @else
-                                <img src="{{ asset('frontend_asset/img/author/1.jpg') }}" alt="">  
+                            @if ($author->photo != null)
+                            <img src="{{ asset('uploads/author') }}/{{ $author->photo }}" alt="">
+                             @else
+                             <img src="{{ asset('admin_asset')}}/img/author/1.jpg" alt="">   
                             @endif
+                            
                         </a>
                         
                     </div>

@@ -35,7 +35,7 @@
                             <ul class="entry-meta">
                                 <li class="post-author-img">
                                     @if ($post->rel_to_author->photo != null) 
-                                    <img src="{{ asset('uploads/author/' . $post->rel_to_author->photo) }}" alt="">
+                                    <img src="{{ asset('uploads/author/',$post->rel_to_author->photo) }}" alt="">
                                 @else
                                     <img src="{{ asset('frontend_asset/img/author/1.jpg') }}" alt="">  
                                 @endif

@@ -48,18 +48,7 @@ Route::get('/admin/contact-messages', [ContactMessageController::class, 'index']
 Route::delete('/admin/contact-messages/{id}', [ContactMessageController::class, 'destroy'])->name('admin.contact.messages.delete');
 
 
-
-
-
-
-
-
-
-
-
 Route::get('/dashboard',[HomeController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
-
-
 
 require __DIR__.'/auth.php';
 
@@ -122,19 +111,12 @@ Route::get('pass/reset/req',[PassRestController::class,'pass_reset_req'])->name(
 Route::post('pass/reset/req/send',[PassRestController::class,'pass_reset_req_post'])->name('pass.reset.req.post');
 //Password Reset From
 Route::get('pass/reset/form/{token}',[PassRestController::class,'pass_reset_form'])->name('pass.reset.form');
-
 Route::post('pass/reset/update/{token}',[PassRestController::class,'pass_reset_update'])->name('pass.reset.update');
-
-
-
-
-
 
 //Authors Admin Controller
 Route::get('/authors', [UserController::class, 'authors'])->middleware('auth')->name('authors');
 Route::get('/author/delete/{author_id}',[UserController::class,'author_delete'])->name('author.delete');
 Route::get('/authors/status/{author_id}', [UserController::class, 'authors_status'])->name('authors.status');
-
 
 //posts authors 
 Route::get('/add/post',[PostController::class,'add_post'])->name('add.post');
@@ -157,7 +139,6 @@ Route::get('/tag/post/{tag_id}',[FrontendController::class,'tag_post'])->name('t
 
 
 //subscriptions
-
 Route::post('/subscribe', [SubscriptionsController::class, 'subscribe'])->name('subscriptions.subscribe');
 
 // admin panel subscriptions show

@@ -31,13 +31,13 @@
                         <td>{{ $author -> name }}</td>
                         <td>{{ $author -> email }}</td>
                         <td>
-                            @if($author->photo ==null)
-                            <img src="https://via.placeholder.com/30x30" alt="profile">
-                            @else
-                            aaa
-
-                            @endif
+                        @if ($author->photo !== null) 
+                        <img src="{{ asset('uploads/author') }}/{{ $author->photo }}" alt="">
+                        @else
+                            <img src="{{ asset('frontend_asset/img/author/1.jpg') }}" alt="">  
+                        @endif
                         </td>
+
                         <td>
                             <strong>{{ $author->status ==1?'Active':'Deactive' }}</strong>
                         </td>

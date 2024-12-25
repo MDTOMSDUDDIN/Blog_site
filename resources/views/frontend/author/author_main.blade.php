@@ -64,9 +64,7 @@
                 <li class="nav-item">
                   <a href="{{ route('my.post') }}" class="nav-link">My Post</a>
                 </li>
-                <li class="nav-item">
-                  <a href="../../pages/email/compose.html" class="nav-link">Compose</a>
-                </li>
+                
               </ul>
             </div>
           </li>
@@ -136,8 +134,8 @@
 										<img src="https://via.placeholder.com/80x80" alt="">
 									</div>
 									<div class="info text-center">
-										<p class="name font-weight-bold mb-0">Amiah Burton</p>
-										<p class="email text-muted mb-3">amiahburton@gmail.com</p>
+										<p class="name font-weight-bold mb-0">MD TOMAS UDDIN</p>
+										<p class="email text-muted mb-3">mdtomasuddin1@gmail.com</p>
 									</div>
 								</div>
 								<div class="dropdown-body">
@@ -172,7 +170,7 @@
 
 			<!-- partial:../../partials/_footer.html -->
 			<footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
-				<p class="text-muted text-center text-md-left">Copyright © 2024 <a href="https://www.nobleui.com" target="_blank">MD TOMAS UDDIN</a>mdtomasuddin1@gmail.com</p>
+				<p class="text-muted text-center text-md-left">© 2024 <a href="#" target="_blank">MD TOMAS UDDIN</a></p>
 				<p class="text-muted text-center text-md-left mb-0 d-none d-md-block">mdtomasuddin1@gmail.com<i class="mb-1 text-primary ml-1 icon-small" data-feather="heart"></i></p>
 			</footer>
 			<!-- partial -->
