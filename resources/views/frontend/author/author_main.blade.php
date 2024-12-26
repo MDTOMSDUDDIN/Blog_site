@@ -42,31 +42,22 @@
       </div>
       <div class="sidebar-body">
         <ul class="nav">
-          <li class="nav-item nav-category">Main</li>
+          <li class="nav-item nav-category">Author Admin Panel</li>
           <li class="nav-item">
-            <a href="../../dashboard-one.html" class="nav-link">
+            <a href="{{ route('author.dashboard') }}" class="nav-link">
               <i class="link-icon" data-feather="box"></i>
               <span class="link-title">Dashboard</span>
             </a>
           </li>
-          <li class="nav-item nav-category">web apps</li>
+          <li class="nav-item nav-category">Author Post</li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
-              <i class="link-icon" data-feather="mail"></i>
-              <span class="link-title">Post</span>
-              <i class="link-arrow" data-feather="chevron-down"></i>
-            </a>
-            <div class="collapse" id="emails">
-              <ul class="nav sub-menu">
-                <li class="nav-item">
-                  <a href="{{ route('add.post') }}" class="nav-link">Add New Post</a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('my.post') }}" class="nav-link">My Post</a>
-                </li>
-                
-              </ul>
-            </div>
+          
+            <li class="nav-item">
+				<a href="{{ route('add.post') }}" class="nav-link">Add New Post</a>
+			  </li>
+			  <li class="nav-item">
+				<a href="{{ route('my.post') }}" class="nav-link">MY POST</a>
+			  </li>
           </li>
         </ul>
       </div>
@@ -106,8 +97,6 @@
 		<!-- partial -->
 	
 		<div class="page-wrapper">
-				
-			<!-- partial:../../partials/_navbar.html -->
 			<nav class="navbar">
 				<a href="#" class="sidebar-toggler">
 					<i data-feather="menu"></i>
@@ -126,21 +115,29 @@
 					<ul class="navbar-nav">
 						<li class="nav-item dropdown nav-profile">
 							<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<img src="https://via.placeholder.com/30x30" alt="profile">
+								@if (Auth('author')->user()->photo==null)
+									<img src="https://via.placeholder.com/30x30" alt="profile">
+								@else
+									<img src="{{ asset('uploads/author') }}/{{ Auth('author')->user()->photo }}" alt="">
+								@endif
 							</a>
 							<div class="dropdown-menu" aria-labelledby="profileDropdown">
 								<div class="dropdown-header d-flex flex-column align-items-center">
 									<div class="figure mb-3">
-										<img src="https://via.placeholder.com/80x80" alt="">
+									 @if (Auth('author')->user()->photo==null)
+									   <img src="https://via.placeholder.com/30x30" alt="profile">
+									 @else
+									   <img src="{{ asset('uploads/author') }}/{{ Auth('author')->user()->photo }}" alt="">
+									 @endif
 									</div>
 									<div class="info text-center">
-										<p class="name font-weight-bold mb-0">MD TOMAS UDDIN</p>
-										<p class="email text-muted mb-3">mdtomasuddin1@gmail.com</p>
+										<p class="name font-weight-bold mb-0">{{ Auth('author')->user()->name }}</p>
+										<p class="email text-muted mb-3">{{ Auth('author')->user()->email }}</p>
 									</div>
 								</div>
 								<div class="dropdown-body">
 									<ul class="profile-nav p-0 pt-3">
-										
+									
 										<li class="nav-item">
 											<a href="{{ route('author.edit') }}" class="nav-link">
 												<i data-feather="edit"></i>

@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Blog_site</title>
+	<title>Blog_site_Dashboard</title>
 	<!-- core:css -->
 	<link rel="stylesheet" href="{{ asset('admin_asset') }}/vendors/core/core.css">
 	<!-- endinject -->
@@ -39,7 +39,7 @@
         <ul class="nav">
           <li class="nav-item nav-category">Main</li>
           <li class="nav-item">
-            <a href="../../dashboard-one.html" class="nav-link">
+            <a href="{{ route("dashboard") }}" class="nav-link">
               <i class="link-icon" data-feather="box"></i>
               <span class="link-title">Dashboard</span>
             </a>
@@ -159,80 +159,83 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item nav-category">Pages</li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#general-pages" role="button" aria-expanded="false" aria-controls="general-pages">
-              <i class="link-icon" data-feather="book"></i>
-              <span class="link-title">Special pages</span>
-              <i class="link-arrow" data-feather="chevron-down"></i>
-            </a>
-            <div class="collapse" id="general-pages">
-              <ul class="nav sub-menu">
-                <li class="nav-item">
-                  <a href="../../pages/general/blank-page.html" class="nav-link">Blank page</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/general/faq.html" class="nav-link">Faq</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/general/invoice.html" class="nav-link">Invoice</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/general/profile.html" class="nav-link">Profile</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/general/pricing.html" class="nav-link">Pricing</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/general/timeline.html" class="nav-link">Timeline</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#authPages" role="button" aria-expanded="false" aria-controls="authPages">
-              <i class="link-icon" data-feather="unlock"></i>
-              <span class="link-title">Authentication</span>
-              <i class="link-arrow" data-feather="chevron-down"></i>
-            </a>
-            <div class="collapse" id="authPages">
-              <ul class="nav sub-menu">
-                <li class="nav-item">
-                  <a href="../../pages/auth/login.html" class="nav-link">Login</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/auth/register.html" class="nav-link">Register</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#errorPages" role="button" aria-expanded="false" aria-controls="errorPages">
-              <i class="link-icon" data-feather="cloud-off"></i>
-              <span class="link-title">Error</span>
-              <i class="link-arrow" data-feather="chevron-down"></i>
-            </a>
-            <div class="collapse" id="errorPages">
-              <ul class="nav sub-menu">
-                <li class="nav-item">
-                  <a href="../../pages/error/404.html" class="nav-link">404</a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/error/500.html" class="nav-link">500</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item nav-category">Docs</li>
-          <li class="nav-item">
-            <a href="https://www.nobleui.com/html/documentation/docs.html" target="_blank" class="nav-link">
-              <i class="link-icon" data-feather="hash"></i>
-              <span class="link-title">Documentation</span>
-            </a>
-          </li>
+                              {{-- <li class="nav-item nav-category">Pages</li>
+                              <li class="nav-item">
+                                <a class="nav-link" data-toggle="collapse" href="#general-pages" role="button" aria-expanded="false" aria-controls="general-pages">
+                                  <i class="link-icon" data-feather="book"></i>
+                                  <span class="link-title">Special pages</span>
+                                  <i class="link-arrow" data-feather="chevron-down"></i>
+                                </a>
+                                <div class="collapse" id="general-pages">
+                                  <ul class="nav sub-menu">
+                                    <li class="nav-item">
+                                      <a href="../../pages/general/blank-page.html" class="nav-link">Blank page</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a href="../../pages/general/faq.html" class="nav-link">Faq</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a href="../../pages/general/invoice.html" class="nav-link">Invoice</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a href="../../pages/general/profile.html" class="nav-link">Profile</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a href="../../pages/general/pricing.html" class="nav-link">Pricing</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a href="../../pages/general/timeline.html" class="nav-link">Timeline</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" data-toggle="collapse" href="#authPages" role="button" aria-expanded="false" aria-controls="authPages">
+                                  <i class="link-icon" data-feather="unlock"></i>
+                                  <span class="link-title">Authentication</span>
+                                  <i class="link-arrow" data-feather="chevron-down"></i>
+                                </a>
+                                <div class="collapse" id="authPages">
+                                  <ul class="nav sub-menu">
+                                    <li class="nav-item">
+                                      <a href="../../pages/auth/login.html" class="nav-link">Login</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a href="../../pages/auth/register.html" class="nav-link">Register</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" data-toggle="collapse" href="#errorPages" role="button" aria-expanded="false" aria-controls="errorPages">
+                                  <i class="link-icon" data-feather="cloud-off"></i>
+                                  <span class="link-title">Error</span>
+                                  <i class="link-arrow" data-feather="chevron-down"></i>
+                                </a>
+                                <div class="collapse" id="errorPages">
+                                  <ul class="nav sub-menu">
+                                    <li class="nav-item">
+                                      <a href="../../pages/error/404.html" class="nav-link">404</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a href="../../pages/error/500.html" class="nav-link">500</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </li> --}}
+                              {{-- <li class="nav-item nav-category">Docs</li>
+                              <li class="nav-item">
+                                <a href="https://www.nobleui.com/html/documentation/docs.html" target="_blank" class="nav-link">
+                                  <i class="link-icon" data-feather="hash"></i>
+                                  <span class="link-title">Documentation</span>
+                                </a>
+                              </li> --}}
         </ul>
       </div>
     </nav>
+
+
+
     <nav class="settings-sidebar">
       <div class="sidebar-body">
         <a href="#" class="settings-sidebar-toggler">
@@ -518,7 +521,7 @@
 
 			<!-- partial:../../partials/_footer.html -->
 			<footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
-				<p class="text-muted text-center text-md-left">©2024 mdtomasuddin1@gmail.com <a href="#" target="_blank">Emil</a>.->mdtomasuddin1@gmail.com</p>
+				<p class="text-muted text-center text-md-left">©2024<a href="#" target="_blank"></a>Email->mdtomasuddin1@gmail.com</p>
 				<p class="text-muted text-center text-md-left mb-0 d-none d-md-block">MD TOMAS UDDIN<i class="mb-1 text-primary ml-1 icon-small" data-feather="heart"></i></p>
 			</footer>
 			<!-- partial -->

@@ -26,12 +26,12 @@
                     </div>
                     <div class="my-2">
                         <div class="my-2">
-                            <img src="{{ asset('uploads/author/' . Auth::guard('author')->user()->photo) }}" id="blah" width="200" alt="Profile_Photo">
+                            <img src="{{ asset('uploads/author') }}/{{ Auth::guard('author')->user()->photo }}" id="blah" width="100" alt="">
                         </div>                        
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
+                    </div>.
                 </form>
             </div>
         </div>
